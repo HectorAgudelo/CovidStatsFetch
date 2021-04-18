@@ -1,1 +1,1 @@
-# Weather2
+# CovidStats
