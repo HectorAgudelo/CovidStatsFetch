@@ -2,14 +2,13 @@ let countryInput = document.querySelector('.countryInput');
 
 countryInput.addEventListener('click', function (event) {
   event.preventDefault();
-  const country = document.querySelector('.country').value;
+  const countries = document.querySelector('.country').value;
 
-
-  countryStats(country);
+  countryStats(countries);
 });
 
-const countryStats = (country) => {
-  const endpointUrl = `https://covid-19-data.p.rapidapi.com/country?name=${country}`;
+const countryStats = (countries) => {
+  const endpointUrl = `https://covid-19-data.p.rapidapi.com/country?name=${countries}`;
 
   // RapidAPI host
   const rapidApiHost = 'covid-19-data.p.rapidapi.com';
@@ -29,7 +28,41 @@ const countryStats = (country) => {
       return response.json();
     })
     .then((body) => {
-      console.log(body);
+      let { confirmed, country, critical, deaths, recovered } = body[0];
+      let resultsBody = 
+`<table class="table table-success table-striped">
+  <thead>
+    
+      <h1 class="text">${country}</h1>
+    
+  </thead>
+  <tbody>
+    <tr>
+      <th class="text" scope="row">Confirmed</th>
+      <td class="text" colspan="">${confirmed.toLocaleString()}</td>
+    </tr>
+    <tr>
+      <th class="text" scope="row">Critical</th>
+      <td class="text" colspan="2">${critical.toLocaleString()}</td>
+    </tr>
+    <tr>
+      <th class="text" scope="row">Deaths</th>
+      <td class="text" colspan="2">${deaths.toLocaleString()}</td>
+    </tr>
+    <tr>
+    <th class="text" scope="row">Recovered</th>
+    <td class="text" colspan="2">${recovered.toLocaleString()}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="btn">
+  <a href="/index.html" class="btn btn-primary">Home</a>
+</div>`;
+document.querySelector("body").innerHTML = ""
+let div = document.createElement("DIV")
+div.innerHTML=resultsBody
+document.querySelector("body").appendChild(div);
+
     })
     .catch((err) => {
       console.log(err);
