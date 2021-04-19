@@ -56,7 +56,7 @@ const countryStats = (countries) => {
   </tbody>
 </table>
 <div class="btn">
-  <a href="/index.html" class="btn btn-primary">Home</a>
+  <a href="/index.html" class="btn btn-success">Home</a>
 </div>`;
 document.querySelector("body").innerHTML = ""
 let div = document.createElement("DIV")
