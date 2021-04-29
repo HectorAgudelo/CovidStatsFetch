@@ -7,7 +7,7 @@ countryInput.addEventListener('click', function (event) {
   countryStats(countries);
 });
 
-const countryStats = (countries) => {
+const countryStats = (countries) => { //implementa una alerta que obligue a digitar el pais y que tambien te avise si digitaste algo raro... UN NO PAIS
   const endpointUrl = `https://covid-19-data.p.rapidapi.com/country?name=${countries}`;
 
   // RapidAPI host
@@ -71,4 +71,4 @@ let div = document.createElement("DIV")
 div.innerHTML=resultsBody
 document.querySelector("body").appendChild(div);
 
-}
+} //Muy buen Scripting
